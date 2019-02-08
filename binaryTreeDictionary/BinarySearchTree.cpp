@@ -127,36 +127,26 @@ void BinarySearchTree::remove(string word)
 	root = removeHelper(root, word);
 }
 
+bool existsHelper(Node *r, string word)
+{
+	if(r == nullptr)
+	{
+		return false;
+	}
+	if(r->data == word)
+	{
+		return true;
+	}
 
+	bool exists1 = existsHelper(r->left, word);
+	bool exists2 = existsHelper(r->right, word);
+
+	return exists1 || exists2;
+}
 // Checks if a word is in the tree
 bool BinarySearchTree::exists(string word) const
 {
-	Node *test = root;
-	
-	while(test != nullptr)
-	{
-		if(test->data == word)
-		{
-			break;
-		}
-		else if(word > test->data)
-		{		
-			test = test->right;
-		}
-		else if(word < test->data)
-		{
-			test = test->left;
-		}
-	}
-		if(test == nullptr)
-		{
-			return false;
-		}
-		else if(test->data == word)
-		{
-			return true;
-		}
-	else return false;
+  	return existsHelper(root,word);
 }
 
 //inorder helper function
