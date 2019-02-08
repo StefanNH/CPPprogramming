@@ -1,0 +1,8 @@
+test:
+	cl /c test.cpp BinarySearchTree.cpp bstDictionary.cpp
+	
+	lib BinarySearchTree.obj
+	
+	link test.obj BinarySearchTree.lib
+	
+	link bstDictionary.obj BinarySearchTree.lib
